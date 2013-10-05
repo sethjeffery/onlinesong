@@ -26,8 +26,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'haml'
 gem 'dropbox-sdk'
-
-gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
+gem "compass-rails", "~> 2.0.alpha.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
