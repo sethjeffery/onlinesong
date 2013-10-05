@@ -1,0 +1,53 @@
+#previewer {
+  overflow-y: auto;
+  margin: 0 -15px;
+  padding: 0 15px;
+  position: relative;
+
+  .section.without-chords:first-child {
+    .line:first-child {
+      font-size: 1.25em;
+      line-height: 1.25em;
+    }
+  }
+
+  .section.monospace {
+    font-family: 'Droid Sans Mono', monospace;
+    white-space: pre;
+    font-size: 0.85em;
+  }
+
+  .section {
+    margin: 0.5em 0 1.5em;
+
+    &.with-chords {
+      .line {
+        min-height: 1em;
+        padding-top: 1.5em;
+        .chord {
+          margin-top: -1.25em;
+          position: absolute;
+        }
+      }
+      .line.without-chords:first-child {
+        padding-top: 0;
+      }
+    }
+    .line {
+      .chord {
+        font-weight: bold;
+
+        .sharp, .flat, .number {
+          position: relative;
+          top: -0.5em;
+          font-size: 0.85em;
+        }
+      }
+
+      .space {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+  }
+}

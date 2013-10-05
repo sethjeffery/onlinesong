@@ -1,0 +1,48 @@
+@import "compass";
+
+.dropdown-menu.dropdown-browser {
+  padding-left: 10px;
+  padding-right: 10px;
+  min-width: 300px;
+}
+
+#browser {
+
+  .folder-name {
+    line-height: 24px;
+    height: 24px;
+
+    > .btn {
+      vertical-align: top;
+      > span {
+        margin-right: 3px;
+      }
+    }
+  }
+  ul.file-list {
+    overflow-y: auto;
+    margin: 0 -10px;
+    padding: 5px 10px 0 10px;
+    box-sizing: border-box;
+    > li {
+      list-style: none;
+      display: block;
+      > a {
+        padding: 2px 2px 2px 1.5em;
+        display: block;
+        position: relative;
+        @include border-radius(3px);
+
+        &:hover {
+          background-color: #c6f2e9;
+          text-decoration: none;
+        }
+        > span {
+          position: absolute;
+          left: 3px;
+          top: 3px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,172 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .navbar-header
+    = link_to 'On(line) Song', '/', class: 'navbar-brand'
+
+  %ul.nav.navbar-nav
+    %li.dropdown
+      %a.big-icon.dropdown-toggle#open_dropbox{href: '#', data: {toggle: 'dropdown'}}
+        = image_tag "dropbox.png"
+        %i.caret
+      .dropdown-menu.dropdown-browser
+        %h2 Browser
+
+        - if @dropbox_auth_url
+          .dropbox-auth
+            %p= link_to "Log in to Dropbox", @dropbox_auth_url, class: "btn btn-info", id: "dropbox_auth", target:"_blank"
+
+            %p and then paste the authentication code it gives you into the box below.
+
+            = form_tag "/auth", method: :post, class: "form-inline" do
+              .input-group
+                %input.form-control{type:'text', name:'code'}
+                %span.input-group-btn
+                  %input.btn.btn-primary{type:'submit', value:'OK'}
+
+        #browser
+          .folder-name
+          %ul.file-list
+
+    %li#download_menu_item
+      = link_to "#", id: "download" do
+        Download
+
+.container-fluid
+  .row
+    .col-xs-12.col-md-6
+      %h2 Editor
+      .toolbar
+        %button.btn.btn-xs.btn-default.popover-toggle#editor-chord{data: {toggle: 'popover', title: 'Add chord', html: true, placement: 'bottom', container: 'body'}}
+          Add chord
+          %i.caret
+        .popover-content-box
+          .options
+            .btn-group-vertical{data: {toggle: 'buttons'}}
+              %label.btn.btn-xs.btn-info.active
+                %input{type:'radio', name:'root_letter', checked: 'checked'}
+                A
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_letter'}
+                B
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_letter'}
+                C
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_letter'}
+                D
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_letter'}
+                E
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_letter'}
+                F
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_letter'}
+                G
+
+            .btn-group-vertical{data: {toggle: 'buttons'}}
+              %label.btn.btn-xs.btn-info.active
+                %input{type:'radio', name:'root_sharp', checked: 'checked'}
+                &nbsp;
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_sharp'}
+                \#
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_sharp'}
+                b
+
+            .btn-group-vertical{data: {toggle: 'buttons'}}
+              %label.btn.btn-xs.btn-info.active
+                %input{type:'radio', name:'root_shape', checked: 'checked'}
+                &nbsp;
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                m
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                7
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                m7
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                maj7
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                2
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                sus4
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                6
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                aug
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                dim
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                9
+              %label.btn.btn-xs.btn-info
+                %input{type:'radio', name:'root_shape'}
+                m9
+
+            .btn-group-vertical{data: {toggle: 'buttons'}}
+              %label.btn.btn-xs.btn-warning.active
+                %input{type:'radio', name:'over_letter', checked: 'checked'}
+                &nbsp;
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_letter'}
+                \/A
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_letter'}
+                \/B
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_letter'}
+                \/C
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_letter'}
+                \/D
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_letter'}
+                \/E
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_letter'}
+                \/F
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_letter'}
+                \/G
+
+            .btn-group-vertical{data: {toggle: 'buttons'}}
+              %label.btn.btn-xs.btn-warning.active
+                %input{type:'radio', name:'over_sharp', checked:'checked'}
+                &nbsp;
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_sharp'}
+                \#
+              %label.btn.btn-xs.btn-warning
+                %input{type:'radio', name:'over_sharp'}
+                b
+
+          .popover-footer
+            %button.btn.btn-sm.btn-primary.btn-insert Insert
+            %button.btn.btn-sm.btn-close Close
+
+        %button.btn.btn-xs.btn-default#editor-font-up
+          %i.glyphicon.glyphicon-chevron-up
+        %button.btn.btn-xs.btn-default#editor-font-down
+          %i.glyphicon.glyphicon-chevron-down
+
+      = form_tag download_path, id: "editor_form" do
+        %textarea.form-control#editor{rows: 20, name: 'contents', placeholder: "Type your song here"}
+
+    .col-xs-12.col-md-6
+      %h2 Preview
+      .toolbar
+        %button.btn.btn-xs.btn-default#previewer-font-up
+          %i.glyphicon.glyphicon-chevron-up
+        %button.btn.btn-xs.btn-default#previewer-font-down
+          %i.glyphicon.glyphicon-chevron-down
+
+      #previewer
