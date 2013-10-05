@@ -6,6 +6,7 @@ class DropboxFileLoader
       $.get data.path, (data) =>
         @path = path
         window.editor.$editor.html(data)
+        window.editor.updateDownloadButton()
         window.previewer.update()
 
 $ =>
