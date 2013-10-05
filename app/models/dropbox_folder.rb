@@ -4,7 +4,19 @@ class DropboxFolder < OpenStruct
   end
 
   def files
-    @files ||= self.contents.present? ? self.contents.map{|item| item["is_dir"] ? DropboxFolder.new(item.with_indifferent_access) : DropboxFile.new(item.with_indifferent_access) } : []
+    @files ||= filtered_contents.map{|item|
+      if item["is_dir"]
+        DropboxFolder.new(item.with_indifferent_access)
+      else
+        DropboxFile.new(item.with_indifferent_access)
+      end
+    }
+  end
+
+  def filtered_contents
+    (contents || []).select{ |item|
+      item["is_dir"] || item["path"][-7..-1] == '.onsong'
+    }
   end
 
   def parent_path
